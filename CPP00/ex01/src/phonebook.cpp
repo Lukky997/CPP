@@ -1,6 +1,4 @@
 #include "../includes/phonebook.hpp"
-#include <cctype>
-#include <sstream>
 
 std::string	getInput(const std::string &prompt)
 {
@@ -58,24 +56,33 @@ std::string getPhoneNumber()
 {
 	std::string phoneNumber;
 
-	std::cout << "What is your phone number : ";
-	std::getline(std::cin, phoneNumber);
-
-	if (phoneNumber.empty())
+	while(1)
 	{
-		std::cout << "This field cannot be empty. Please enter again: ";
+		std::cout << "What is your phone number : ";
 		std::getline(std::cin, phoneNumber);
-	}
 
-	for (size_t j = 0; j < phoneNumber.size(); j++)
-	{
-		if (!isdigit(phoneNumber[j]))
+		if (phoneNumber.empty())
 		{
-			std::cout << "Please enter digits only.\nPhone number: ";
+			std::cout << "This field cannot be empty. Please enter again: ";
 			std::getline(std::cin, phoneNumber);
 		}
+
+		bool valid = true;
+		for (size_t j = 0; j < phoneNumber.size(); j++)
+		{
+			if (!isdigit(phoneNumber[j]))
+			{
+				valid = false;
+				break;
+			}
+		}
+		if (!valid)
+		{
+			std::cout << "Please enter digits only." << std::endl;
+			continue;
+		}
+		return (phoneNumber);
 	}
-	return (phoneNumber);
 }
 
 PhoneBook::PhoneBook()
