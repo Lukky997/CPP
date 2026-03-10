@@ -17,5 +17,5 @@ int	main(void) {
 	Scav.beRepaired(60);
 	Scav.guardGate();
 	
-	return 0;
+	return (0);
 }

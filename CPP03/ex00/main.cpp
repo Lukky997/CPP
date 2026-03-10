@@ -10,5 +10,5 @@ int main()
     b.takeDamage(3);
     b.beRepaired(2);
 
-    return 0;
+    return (0);
 }
