@@ -6,7 +6,7 @@ ScavTrap::ScavTrap () : ClapTrap() {
 	_energyPoints = 50;
 	_attackDamage = 20;
 
-	std::cout << "ScavTrap constructor "<< this->_name << " called" << std::endl;
+	std::cout << "ScavTrap constructor "<< _name << " called" << std::endl;
 }
 
 ScavTrap::ScavTrap (std::string name) : ClapTrap(name) {
@@ -14,15 +14,15 @@ ScavTrap::ScavTrap (std::string name) : ClapTrap(name) {
 	_energyPoints = 50;
 	_attackDamage = 20;
 
-	std::cout << "ScavTrap constructor "<< this->_name << " called" << std::endl;
+	std::cout << "ScavTrap constructor "<< _name << " called" << std::endl;
 }
 
 ScavTrap::ScavTrap (const ScavTrap& copy) : ClapTrap(copy) {
-	std::cout << "ScavTrap copy " << this->_name << " constructor called" << std::endl;
+	std::cout << "ScavTrap copy " << _name << " constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap& copy) {
-	std::cout << "ScavTrap copy " << this->_name << " assignment operator called" << std::endl;
+	std::cout << "ScavTrap copy " << _name << " assignment operator called" << std::endl;
 	if (this != &copy) {
 		ClapTrap::operator=(copy);
 	}
@@ -31,7 +31,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap& copy) {
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << "ScavTrap destructor "<< this->_name << " called" << std::endl;
+	std::cout << "ScavTrap destructor "<< _name << " called" << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target) {
