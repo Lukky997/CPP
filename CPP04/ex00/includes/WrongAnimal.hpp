@@ -6,7 +6,7 @@
 
 class WrongAnimal {
 	protected:
-		std::string type;
+		std::string _type;
 	public:
 		WrongAnimal();
 		WrongAnimal(const WrongAnimal& copy);
@@ -14,7 +14,7 @@ class WrongAnimal {
 		~WrongAnimal();
 
 		void makeSound() const;
-		std::string getType(void) const;
+		std::string getType() const;
 };
 
 #endif

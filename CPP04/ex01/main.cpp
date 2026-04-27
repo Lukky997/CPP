@@ -1,33 +1,33 @@
+#include <iostream>
+
 #include "includes/Animal.hpp"
-#include "includes/Dog.hpp"
 #include "includes/Cat.hpp"
+#include "includes/Dog.hpp"
 
-#include "includes/WrongAnimal.hpp"
-#include "includes/WrongCat.hpp"
+int main()
+{
+  const int n = 10;
+  Animal *animals[n];
 
-int main() {
-	const Animal* h = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+  for (int i = 0; i < n; i++)
+  {
+    if (i < n / 2)
+      animals[i] = new Dog();
+    else
+      animals[i] = new Cat();
+  }
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	h->makeSound();
-	j->makeSound();
-	i->makeSound();
+  std::cout << "\nDeleting as Animals" << std::endl;
+  for (int i = 0; i < n; i++)
+    delete animals[i];
 
-	delete h;
-	delete j;
-	delete i;
+  std::cout << "\nDeep copy test" << std::endl;
+  Dog original;
+  original.getBrain()->setIdea(0, "Ball");
+  Dog copy(original);
+  original.getBrain()->setIdea(0, "Bone");
+  std::cout << "original idea[0] = " << original.getBrain()->getIdea(0) << std::endl;
+  std::cout << "copy idea[0]     = " << copy.getBrain()->getIdea(0) << std::endl;
 
-	std::cout << "\n Test without virtual" << std::endl;
-
-	const WrongAnimal* k = new WrongCat();
-
-	std::cout << k->getType() << " " << std::endl;
-	k->makeSound();
-
-	delete k;
-
-	return (0);
+  return 0;
 }

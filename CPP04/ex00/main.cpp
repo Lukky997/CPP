@@ -6,17 +6,17 @@
 #include "includes/WrongCat.hpp"
 
 int main() {
-	const Animal* h = new Animal();
+	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	h->makeSound();
-	j->makeSound();
 	i->makeSound();
+	j->makeSound();
+	meta->makeSound();
 
-	delete h;
+	delete meta;
 	delete j;
 	delete i;
 

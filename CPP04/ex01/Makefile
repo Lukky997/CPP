@@ -3,7 +3,7 @@ NAME = polymorphism
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp src/Animal.cpp src/Dog.cpp src/Cat.cpp src/WrongAnimal.cpp src/WrongCat.cpp
+SRC = main.cpp src/Animal.cpp src/Dog.cpp src/Cat.cpp src/Brain.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -6,7 +6,7 @@
 
 class Animal {
 	protected:
-		std::string type;
+		std::string _type;
 	public:
 		Animal();
 		Animal(const Animal& copy);
@@ -14,7 +14,7 @@ class Animal {
 		virtual ~Animal();
 
 		virtual void makeSound() const;
-		std::string getType(void) const;
+		std::string getType() const;
 };
 
 #endif
