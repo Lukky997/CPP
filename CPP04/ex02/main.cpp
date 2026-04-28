@@ -6,33 +6,52 @@
 
 int main()
 {
-  const int n = 10;
-  Animal *animals[n];
+  std::cout << "Test polymorphisme (classe abstraite)" << std::endl;
 
-  for (int i = 0; i < n; i++)
-  {
-    if (i < n / 2)
+  const Animal* dog = new Dog();
+  const Animal* cat = new Cat();
+
+  std::cout << dog->getType() << " : ";
+  dog->makeSound();
+
+  std::cout << cat->getType() << " : ";
+  cat->makeSound();
+
+  delete dog;
+  delete cat;
+
+  std::cout << "\nTableau d'animaux" << std::endl;
+
+  const int size = 6;
+  Animal* animals[size];
+
+  for (int i = 0; i < size; i++) {
+    if (i < size / 2)
       animals[i] = new Dog();
     else
       animals[i] = new Cat();
   }
 
-  for (int i = 0; i < n; i++)
-  {
-    std::cout << animals[i]->getType() << ": ";
-    animals[i]->makeSound();
-  }
-
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < size; i++)
     delete animals[i];
 
-  std::cout << "\nDeep copy test" << std::endl;
+  std::cout << "\nTest deep copy" << std::endl;
+
   Dog original;
-  original.getBrain()->setIdea(0, "Ball");
+  original.getBrain()->setIdea(0, "Manger");
+
   Dog copy(original);
-  original.getBrain()->setIdea(0, "Bone");
-  std::cout << "original idea[0] = " << original.getBrain()->getIdea(0) << std::endl;
-  std::cout << "copy idea[0]     = " << copy.getBrain()->getIdea(0) << std::endl;
+
+  std::cout << "Original idea: " << original.getBrain()->getIdea(0) << std::endl;
+  std::cout << "Copy idea: " << copy.getBrain()->getIdea(0) << std::endl;
+
+  copy.getBrain()->setIdea(0, "Dormir");
+
+  std::cout << "\nAprès modification :" << std::endl;
+  std::cout << "Original idea: " << original.getBrain()->getIdea(0) << std::endl;
+  std::cout << "Copy idea: " << copy.getBrain()->getIdea(0) << std::endl;
 
   return 0;
 }
+
+
