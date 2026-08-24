@@ -25,7 +25,29 @@ int main(void)
 		}
 	}
 
-	std::cout << "\n=== TEST 2: Initialization and values ===" << std::endl;
+	std::cout << "\n=== TEST 2: Construction with a size ===" << std::endl;
+	{
+		Array<int> numbers(5);
+		bool initialized = true;
+
+		std::cout << "Size: " << numbers.size() << std::endl;
+		std::cout << "Default values: ";
+		for (unsigned int index = 0; index < numbers.size(); index++) {
+			std::cout << numbers[index] << " ";
+			if (numbers[index] != 0)
+				initialized = false;
+		}
+		std::cout << std::endl;
+
+		if (numbers.size() == 5 && initialized)
+			std::cout << "[OK] Size and default values are correct" << std::endl;
+		else {
+			std::cout << "[KO] Invalid size or default values" << std::endl;
+			errors++;
+		}
+	}
+
+	std::cout << "\n=== TEST 3: Initialization and values ===" << std::endl;
 	{
 		Array<int> numbers(MAX_VAL);
 		int mirror[MAX_VAL];
@@ -53,7 +75,28 @@ int main(void)
 		}
 	}
 
-	std::cout << "\n=== TEST 3: Deep copy ===" << std::endl;
+	std::cout << "\n=== TEST 4: Modification of elements ===" << std::endl;
+	{
+		Array<int> numbers(5);
+
+		for (unsigned int index = 0; index < numbers.size(); index++)
+			numbers[index] = static_cast<int>(index * 10);
+
+		std::cout << "Modified values: ";
+		for (unsigned int index = 0; index < numbers.size(); index++)
+			std::cout << numbers[index] << " ";
+		std::cout << std::endl;
+
+		if (numbers[0] == 0 && numbers[1] == 10 && numbers[2] == 20
+			&& numbers[3] == 30 && numbers[4] == 40)
+			std::cout << "[OK] Elements can be modified" << std::endl;
+		else {
+			std::cout << "[KO] Element modification is incorrect" << std::endl;
+			errors++;
+		}
+	}
+
+	std::cout << "\n=== TEST 5: Deep copy ===" << std::endl;
 	{
 		Array<int> original(3);
 		original[0] = 10;
@@ -72,7 +115,7 @@ int main(void)
 		}
 	}
 
-	std::cout << "\n=== TEST 4: Assignment operator ===" << std::endl;
+	std::cout << "\n=== TEST 6: Assignment operator ===" << std::endl;
 	{
 		Array<std::string> original(2);
 		original[0] = "first";
@@ -91,7 +134,7 @@ int main(void)
 		}
 	}
 
-	std::cout << "\n=== TEST 5: Bounds checking ===" << std::endl;
+	std::cout << "\n=== TEST 7: Bounds checking ===" << std::endl;
 	{
 		Array<int> numbers(3);
 		bool lowerBoundCaught = false;
@@ -119,15 +162,19 @@ int main(void)
 		}
 	}
 
-	std::cout << "\n=== TEST 6: Const access ===" << std::endl;
+	std::cout << "\n=== TEST 8: Array<std::string> and const access ===" << std::endl;
 	{
-		Array<int> values(2);
-		values[0] = 7;
-		values[1] = 11;
-		const Array<int> constValues(values);
+		Array<std::string> values(3);
+		values[0] = "Hello";
+		values[1] = "World";
+		values[2] = "!";
+		const Array<std::string> constValues(values);
 
-		if (constValues[0] == 7 && constValues[1] == 11)
-			std::cout << "[OK] Const access works" << std::endl;
+		std::cout << "Values: " << constValues[0] << " "
+			<< constValues[1] << " " << constValues[2] << std::endl;
+		if (constValues[0] == "Hello" && constValues[1] == "World"
+			&& constValues[2] == "!")
+			std::cout << "[OK] String values and const access work" << std::endl;
 		else {
 			std::cout << "[KO] Const access is incorrect" << std::endl;
 			errors++;
